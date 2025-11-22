@@ -22,7 +22,6 @@ import { FooterComponent } from '../shared/footer/footer.component';
     EventsComponent,
     ServicesComponent,
     StatisticsComponent,
-    FooterComponent
   ],
   templateUrl: './Home.component.html',
   styleUrls: ['./Home.component.css']
