@@ -1,0 +1,103 @@
+<footer class="main-footer" dir="rtl">
+  <div class="footer-content">
+    <div class="container-fluid">
+      <div class="row">
+
+        <!-- الشعار والوصف -->
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="footer-section">
+            <div class="footer-logo-section">
+              <img src="assets/comp-logo.jpg" alt="شعار كلية الحاسبات والمعلومات" class="footer-logo" />
+              <h4>كلية الحاسبات والمعلومات</h4>
+              <p class="university-name">جامعة الأقصر</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- روابط سريعة -->
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="footer-section">
+            <h5 class="footer-title">{{ footerSections[0]?.title }}</h5>
+            <ul class="footer-links">
+              <li *ngFor="let link of footerSections[0]?.links">
+                <a [routerLink]="link.route" [attr.href]="link.external ? link.route : null">{{ link.label }}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- بيانات التواصل -->
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="footer-section">
+            <h5 class="footer-title">تواصل معنا</h5>
+            <div class="contact-info">
+              <div class="contact-item">
+                <i class="pi pi-map-marker"></i>
+                <div>
+                  <p>حرم جامعة الأقصر<br>مدينة الأقصر - مصر</p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <i class="pi pi-phone"></i>
+                <div>
+                  <p dir="ltr">+20 95 238 4777</p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <i class="pi pi-envelope"></i>
+                <div>
+                  <p dir="ltr">info@fci.luxor.edu.eg</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- تواصل اجتماعي -->
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="footer-section">
+            <h5 class="footer-title">تابعنا على وسائل التواصل</h5>
+            <div class="social-links">
+              <a href="https://facebook.com/FCI.LuxorUniv" target="_blank" class="social-link facebook" aria-label="فيسبوك">
+                <i class="pi pi-facebook"></i>
+              </a>
+              <a href="#" target="_blank" class="social-link twitter" aria-label="تويتر">
+                <i class="pi pi-twitter"></i>
+              </a>
+              <a href="#" target="_blank" class="social-link linkedin" aria-label="لينكد إن">
+                <i class="pi pi-linkedin"></i>
+              </a>
+              <a href="#" target="_blank" class="social-link instagram" aria-label="إنستغرام">
+                <i class="pi pi-instagram"></i>
+              </a>
+              <a href="#" target="_blank" class="social-link youtube" aria-label="يوتيوب">
+                <i class="pi pi-youtube"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- أسفل الفوتر -->
+  <div class="footer-bottom">
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <p class="copyright">
+            جميع الحقوق محفوظة © {{ currentYear }} كلية الحاسبات والمعلومات - جامعة الأقصر
+          </p>
+        </div>
+        <div class="col-md-6">
+          <div class="footer-bottom-links">
+            <a href="#privacy">سياسة الخصوصية</a>
+            <a href="#terms">شروط الاستخدام</a>
+            <a href="#sitemap">خريطة الموقع</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

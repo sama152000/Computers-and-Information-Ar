@@ -1,0 +1,44 @@
+<section class="programs-section" dir="rtl">
+  <div class="container-fluid">
+    <h2 class="section-title">البرامج الدراسية</h2>
+    
+    <div class="programs-grid">
+      <div 
+        *ngFor="let program of programs; let i = index"
+        class="program-card fade-in"
+        [style.animation-delay.ms]="i * 150"
+      >
+        <div class="card-image">
+          <img [src]="program.image" [alt]="program.name" loading="lazy" />
+          <div class="image-overlay">
+            <div class="overlay-content">
+              <i [class]="program.icon"></i>
+              <span>تعرف على المزيد</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <h3>{{ program.name }}</h3>
+          <p>{{ program.description }}</p>
+
+          <div class="program-stats">
+            <div class="stat">
+              <i class="pi pi-clock"></i>
+              <span>{{ program.duration }}</span>
+            </div>
+            <div class="stat">
+              <i class="pi pi-users"></i>
+              <span>{{ program.students }} طالب وطالبة</span>
+            </div>
+          </div>
+
+          <button class="btn btn-primary-custom" (click)="navigateToProgram(program.id)">
+            <i class="pi pi-arrow-left ms-2"></i>
+            استكشاف البرنامج
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

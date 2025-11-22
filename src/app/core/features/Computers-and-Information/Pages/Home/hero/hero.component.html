@@ -1,0 +1,53 @@
+<section class="hero-slider" dir="rtl">
+  <div class="slide-container">
+    <div
+      *ngFor="let slide of slides; let i = index"
+      class="slide"
+      [class.active]="i === currentSlide"
+    >
+      <img [src]="slide.image" [alt]="slide.title" loading="lazy" />
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12 col-md-10 mx-auto text-center">
+              <h2 class="hero-title fade-in">{{ slide.title }}</h2>
+              <p class="hero-subtitle fade-in">{{ slide.subtitle }}</p>
+              <div class="hero-actions fade-in">
+                <button class="btn btn-primary-custom ms-3">
+                  <i class="pi pi-arrow-right ms-2"></i>
+                  اعرف المزيد
+                </button>
+                <button class="btn btn-secondary-custom">
+                  <i class="pi pi-play ms-2"></i>
+                  شاهد الفيديو
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- نقاط التنقل -->
+  <div class="slider-dots">
+    <button 
+      *ngFor="let slide of slides; let i = index"
+      class="dot"
+      [class.active]="i === currentSlide"
+      (click)="goToSlide(i)"
+      aria-label="الانتقال إلى الشريحة {{ i + 1 }}"
+    >
+      <i class="pi pi-circle-fill"></i>
+    </button>
+  </div>
+
+  <!-- أسهم التنقل -->
+  <button class="nav-arrow prev" (click)="previousSlide()" aria-label="الشريحة السابقة">
+    <i class="pi pi-chevron-right"></i>
+  </button>
+  <button class="nav-arrow next" (click)="nextSlide()" aria-label="الشريحة التالية">
+    <i class="pi pi-chevron-left"></i>
+  </button>
+</section>
