@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { routes } from '../../../../../../app.routes';
 
-// ثوابت لتسهيل الصيانة وتجنب النصوص الثابتة
+// Constants for better maintainability and to avoid magic strings
 const ICONS = {
   VISION: 'pi pi-eye',
   MISSION: 'pi pi-flag',
-  GOALS: 'pi pi-target'
+  GOALS: 'pi pi-star'
 } as const;
 
 const ROUTES = {
   VISION_MISSION: '/about/vision-mission',
-  GOALS: '/about/objectives'
+  GOALS: '/about/goals'
 } as const;
 
 interface VisionMissionItem {
@@ -33,31 +34,31 @@ export class VisionMissionComponent implements OnInit {
   constructor(private router: Router) {}
 
   visionMissionData: VisionMissionItem[] = [
-    {
+       {
       id: 1,
       title: 'رؤيتنا',
-      description: 'أن نكون كلية رائدة في تعليم الحاسبات والبحث العلمي، تساهم في دفع عجلة الابتكار والتنمية المجتمعية في صعيد مصر والوطن العربي.',
+      description: 'أن نكون روادًا في تعليم الحاسبات والبحث العلمي، ندفع عجلة الابتكار ونسهم في نمو المجتمع وتقدمه.',
       icon: ICONS.VISION,
       routes: ROUTES.VISION_MISSION
     },
     {
       id: 2,
       title: 'رسالتنا',
-      description: 'إعداد جيل متميز من الخريجين مزوَّد بالمعرفة العميقة والمهارات المتقدمة والأخلاقيات المهنية العالية، قادر على المنافسة عالميًا في مجالات التكنولوجيا والبحث العلمي.',
+      description: 'تزويد الطلاب بالمعارف والمهارات والقيم الأخلاقية التي تمكّنهم من التفوق في مجالات التكنولوجيا والبحث العلمي.',
       icon: ICONS.MISSION,
       routes: ROUTES.VISION_MISSION
     },
     {
       id: 3,
       title: 'أهدافنا',
-      description: 'تعزيز جودة التعليم، دعم البحث العلمي المتميز، تطوير البرامج الدراسية باستمرار، وتعزيز التعاون مع الصناعة والمؤسسات لخدمة المجتمع وتلبية احتياجات سوق العمل.',
+      description: 'رفع جودة التعليم، تعزيز البحث العلمي، وتوطيد التعاون مع الصناعة في علوم الحاسب والمعلومات.',
       icon: ICONS.GOALS,
       routes: ROUTES.GOALS
     }
   ];
 
   ngOnInit() {
-    // تفعيل تأثيرات الظهور عند التمرير
+    // Add intersection observer for animations
     this.observeElements();
   }
 
@@ -74,7 +75,7 @@ export class VisionMissionComponent implements OnInit {
           entry.target.classList.add('visible');
         }
       });
-    }, { threshold: 0.1 });
+    });
 
     setTimeout(() => {
       const elements = document.querySelectorAll('.fade-in');

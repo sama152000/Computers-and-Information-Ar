@@ -1,0 +1,226 @@
+<div class="units-page">
+  <div class="container">
+    <div class="row">
+      <!-- Left Sidebar -->
+      <div class="col-lg-4">
+        <aside class="sidebar">
+          <!-- Service Sections Sidebar -->
+          <div class="sidebar-section" *ngIf="currentService">
+            <h3 class="sidebar-title">{{ currentService.name }}</h3>
+            <div class="nav-links">
+              <button
+                class="nav-link-btn"
+                *ngFor="let section of serviceSections"
+                [class.active]="currentSection?.id === section.id"
+                (click)="selectSection(section)">
+                <i [class]="section.icon + ' me-2'"></i>
+                {{ section.title }}
+              </button>
+            </div>
+          </div>
+
+          <!-- Other Services List -->
+          <div class="sidebar-section">
+            <h3 class="sidebar-title">الوحدات والخدمات بالكلية</h3>
+            <div class="units-list">
+              <button
+                class="unit-btn"
+                *ngFor="let service of allServices"
+                [class.active]="currentService?.id === service.id"
+                (click)="selectService(service)">
+                <div class="unit-info">
+                  <h5>{{ service.name }}</h5>
+                </div>
+                <i class="pi pi-chevron-left"></i>
+              </button>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Main Content Area -->
+      <div class="col-lg-8">
+        <div class="unit-content" *ngIf="currentService && currentSection">
+          <div class="content-header">
+            <h2 class="content-title">
+              <i [class]="currentSection.icon + ' me-3'"></i>
+              {{ currentSection.title }}
+            </h2>
+          </div>
+
+          <div class="content-body">
+            <!-- About Section -->
+            <div *ngIf="currentSection.id === 'about'" class="section-content">
+              <div class="department-overview">
+                <h3>{{ currentService.name }}</h3>
+                <p class="description">{{ currentService.description }}</p>
+
+                <div class="establishment-info" *ngIf="currentService.establishmentInfo">
+                  <h4>معلومات التأسيس</h4>
+                  <p>{{ currentService.establishmentInfo }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vision Section -->
+            <div *ngIf="currentSection.id === 'vision'" class="section-content">
+              <div class="vision-content">
+                <h3>رؤية الوحدة</h3>
+                <p class="vision-text">{{ currentService.vision }}</p>
+              </div>
+            </div>
+
+            <!-- Mission Section -->
+            <div *ngIf="currentSection.id === 'mission'" class="section-content">
+              <div class="mission-content">
+                <h3>رسالة الوحدة</h3>
+                <p class="mission-text">{{ currentService.mission }}</p>
+              </div>
+            </div>
+
+            <!-- Objectives Section -->
+            <div *ngIf="currentSection.id === 'objectives'" class="section-content">
+              <div class="objectives-content">
+                <h3>أهداف الوحدة</h3>
+                <ul class="objectives-list">
+                  <li *ngFor="let objective of currentService.objectives" class="objective-item">
+                    {{ objective }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Services Offered Section -->
+            <div *ngIf="currentSection.id === 'services'" class="section-content">
+              <div class="research-content">
+                <h3>الخدمات المقدمة</h3>
+                <div class="research-areas">
+                  <div class="row">
+                    <div class="col-12">
+                      <ul class="research-list">
+                        <li *ngFor="let srv of currentService.servicesOffered">{{ srv }}</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Administrative Structure Section -->
+            <div *ngIf="currentSection.id === 'structure'" class="section-content">
+              <div class="structure-content">
+                <h3>الهيكل التنظيمي للوحدة</h3>
+                <ul class="org-list">
+                  <li *ngFor="let item of currentService.organizationalStructure">{{ item }}</li>
+                </ul>
+
+                <h3>الهيكل الإداري</h3>
+                <ul class="admin-list">
+                  <li><strong>مدير الوحدة</strong></li>
+                  <li><strong>أعضاء هيئة التدريس</strong></li>
+                  <li *ngFor="let staff of (currentService.teachingStaff || [])" class="staff-member">
+                    {{ staff.name }} – {{ staff.position }}
+                    <a href="#" class="cv-link" *ngIf="staff.cvUrl">عرض السيرة الذاتية</a>
+                  </li>
+                  <li *ngIf="currentService && currentService.teachingAssistants && currentService.teachingAssistants.length > 0"><strong>هيئة التدريس المساعدة</strong></li>
+                  <li *ngFor="let assistant of (currentService.teachingAssistants || [])" class="staff-member">
+                    {{ assistant.name }}
+                    <span class="text-muted" *ngIf="!assistant.cvUrl">(السيرة الذاتية غير متوفرة)</span>
+                    <a href="#" class="cv-link" *ngIf="assistant.cvUrl">عرض السيرة الذاتية</a>
+                  </li>
+                  <li *ngIf="currentService && currentService.administrativeStaff && currentService.administrativeStaff.length > 0"><strong>الجهاز الإداري</strong></li>
+                  <li *ngFor="let admin of (currentService.administrativeStaff || [])">{{ admin.name }}</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Teaching Staff Section -->
+            <div *ngIf="currentSection.id === 'staff'" class="section-content">
+              <div class="staff-content">
+                <h3>أعضاء هيئة التدريس</h3>
+                <div class="table-responsive" *ngIf="currentService && currentService.teachingStaff && currentService.teachingStaff.length > 0">
+                  <table class="table table-bordered table-hover">
+                    <thead class="table-light">
+                      <tr>
+                        <th>#</th>
+                        <th>الاسم</th>
+                        <th>المنصب</th>
+                        <th>البريد الإلكتروني</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let staff of (currentService.teachingStaff || []); let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ staff.name }}</td>
+                        <td>{{ staff.position }}</td>
+                        <td>
+                          <a [href]="'mailto:' + staff.email" *ngIf="staff.email">{{ staff.email }}</a>
+                          <span *ngIf="!staff.email" class="text-muted">غير متوفر</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- Teaching Assistants -->
+                <h4 *ngIf="currentService && currentService.teachingAssistants && currentService.teachingAssistants.length > 0">هيئة التدريس المساعدة</h4>
+                <div class="table-responsive" *ngIf="currentService && currentService.teachingAssistants && currentService.teachingAssistants.length > 0">
+                  <table class="table table-bordered table-hover">
+                    <thead class="table-light">
+                      <tr>
+                        <th>#</th>
+                        <th>الاسم</th>
+                        <th>المنصب</th>
+                        <th>البريد الإلكتروني</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let assistant of (currentService.teachingAssistants || []); let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ assistant.name }}</td>
+                        <td>{{ assistant.position }}</td>
+                        <td>
+                          <a [href]="'mailto:' + assistant.email" *ngIf="assistant.email">{{ assistant.email }}</a>
+                          <span *ngIf="!assistant.email" class="text-muted">غير متوفر</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Supervisor Card -->
+            <div class="supervisor-card text-center mt-5 p-4 border rounded shadow-sm" *ngIf="currentService.supervisor">
+              <h4 class="mb-1">{{ currentService.supervisor.name }}</h4>
+              <p class="text-muted mb-0">{{ currentService.supervisor.position }}</p>
+            </div>
+
+            <!-- Back to Services Button -->
+            <div class="back-to-units text-center mt-4">
+              <button class="btn btn-primary btn-lg" (click)="goToServices()">
+                العودة إلى الوحدات والخدمات
+                <i class="pi pi-arrow-left me-2"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Default Content when no service is selected -->
+        <div class="default-content" *ngIf="!currentService">
+          <div class="welcome-section">
+            <h2>مرحبًا بكم في وحدات وخدمات الكلية</h2>
+            <p>اختر وحدة أو خدمة من القائمة الجانبية للاطلاع على كافة التفاصيل المتعلقة بها، بما في ذلك الأهداف، الخدمات المقدمة، والهيكل الإداري.</p>
+            <div class="units-grid">
+              <div class="unit-card" *ngFor="let service of allServices" (click)="selectService(service)">
+                <h4>{{ service.name }}</h4>
+                <span class="learn-more">اعرف المزيد <i class="pi pi-arrow-left"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

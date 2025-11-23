@@ -59,7 +59,7 @@ export class HeaderService {
             route: 'about',
             fragment: 'objectives',
             queryParams: { tab: 'objectives' },
-            icon: 'pi pi-target'
+            icon: 'pi pi-user'
           },
           {
             id: 23,

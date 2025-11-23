@@ -62,7 +62,7 @@ export class ServicesComponent implements OnInit, OnDestroy {
 
   nextSlide() {
     this.currentIndex++;
-    this.transformPosition = -this.currentIndex * this.cardWidth;
+    this.transformPosition = this.currentIndex * this.cardWidth;
     if (this.currentIndex >= this.services.length) {
       setTimeout(() => {
         this.currentIndex = 0;
@@ -73,18 +73,18 @@ export class ServicesComponent implements OnInit, OnDestroy {
 
   previousSlide() {
     this.currentIndex--;
-    this.transformPosition = -this.currentIndex * this.cardWidth;
+    this.transformPosition = this.currentIndex * this.cardWidth;
     if (this.currentIndex < 0) {
       setTimeout(() => {
         this.currentIndex = this.services.length - 1;
-        this.transformPosition = -this.currentIndex * this.cardWidth;
+        this.transformPosition = this.currentIndex * this.cardWidth;
       }, 600);
     }
   }
 
   goToSlide(index: number) {
     this.currentIndex = index;
-    this.transformPosition = -this.currentIndex * this.cardWidth;
+    this.transformPosition = this.currentIndex * this.cardWidth;
     this.stopAutoplay();
     setTimeout(() => this.startAutoplay(), 3000);
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from "@angular/router";
 
 interface HeroSlide {
   id: number;
@@ -11,7 +12,7 @@ interface HeroSlide {
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.css']
 })

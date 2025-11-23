@@ -5,6 +5,7 @@
     padding-right:var(--l-r-padding);
   position: relative;
   overflow: hidden;
+  direction: rtl;
 }
 
 .services-carousel {

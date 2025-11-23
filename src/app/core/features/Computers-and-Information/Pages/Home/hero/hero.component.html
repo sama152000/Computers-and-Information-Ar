@@ -1,11 +1,11 @@
-<section class="hero-slider" dir="rtl">
+<section class="hero-slider">
   <div class="slide-container">
-    <div
-      *ngFor="let slide of slides; let i = index"
+    <div 
+      *ngFor="let slide of slides; let i = index" 
       class="slide"
       [class.active]="i === currentSlide"
     >
-      <img [src]="slide.image" [alt]="slide.title" loading="lazy" />
+      <img [src]="slide.image" [alt]="slide.title" />
       <div class="hero-overlay"></div>
       <div class="hero-content">
         <div class="container-fluid">
@@ -14,14 +14,16 @@
               <h2 class="hero-title fade-in">{{ slide.title }}</h2>
               <p class="hero-subtitle fade-in">{{ slide.subtitle }}</p>
               <div class="hero-actions fade-in">
-                <button class="btn btn-primary-custom ms-3">
-                  <i class="pi pi-arrow-right ms-2"></i>
-                  اعرف المزيد
-                </button>
-                <button class="btn btn-secondary-custom">
-                  <i class="pi pi-play ms-2"></i>
-                  شاهد الفيديو
-                </button>
+                <button class="btn btn-primary-custom" routerLink="/about-us" aria-label="Learn more about us">
+                  تعرف علي المزيد
+                  <i class="pi pi-arrow-left me-2"></i>
+                                     </button>
+             
+
+<a class="btn btn-secondary-custom" href="https://youtu.be/ilV32t6Gbw4?si=0vILAmQP1746BkPv" target="_blank" rel="noopener noreferrer" aria-label="Watch video">
+  قم بمشاهده الفيديو 
+                  <i class="pi pi-play me-2"></i>
+                   </a>
               </div>
             </div>
           </div>
@@ -30,24 +32,23 @@
     </div>
   </div>
 
-  <!-- نقاط التنقل -->
+  <!-- Navigation Dots -->
   <div class="slider-dots">
     <button 
       *ngFor="let slide of slides; let i = index"
       class="dot"
       [class.active]="i === currentSlide"
       (click)="goToSlide(i)"
-      aria-label="الانتقال إلى الشريحة {{ i + 1 }}"
     >
-      <i class="pi pi-circle-fill"></i>
+      <i class="pi pi-desktop"></i>
     </button>
   </div>
 
-  <!-- أسهم التنقل -->
-  <button class="nav-arrow prev" (click)="previousSlide()" aria-label="الشريحة السابقة">
-    <i class="pi pi-chevron-right"></i>
-  </button>
-  <button class="nav-arrow next" (click)="nextSlide()" aria-label="الشريحة التالية">
+  <!-- Navigation Arrows -->
+  <button class="nav-arrow prev" (click)="previousSlide()">
     <i class="pi pi-chevron-left"></i>
+  </button>
+  <button class="nav-arrow next" (click)="nextSlide()">
+    <i class="pi pi-chevron-right"></i>
   </button>
 </section>

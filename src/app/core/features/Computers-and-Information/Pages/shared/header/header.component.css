@@ -1,3 +1,8 @@
+/* Header Component RTL Support */
+:host {
+  direction: rtl;
+}
+
 /* Top Bar */
 .top-bar {
   background: var(--primary-red);
@@ -33,6 +38,7 @@
   font-weight: 600;
   transition: var(--transition-normal);
   cursor: pointer;
+  text-decoration: none;
   /* space between language button and social icons */
   margin-left: 20px;
 }
@@ -63,6 +69,7 @@
   border: 2px solid var(--primary-red);
   box-shadow: 0 3px 0 #999;
   position: relative;
+  margin-left:2rem;
 }
 
 .logo-frame::after {
@@ -165,7 +172,13 @@
   border: none;
   border-radius: 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  left: auto;
+  right: 0;
+  align-items:  right;
+  justify-items:  right;
+  text-align: right;
 }
+
 
 .dropdown-item {
   color: var(--white) !important;
@@ -183,6 +196,8 @@
 .dropdown-item i {
   color: var(--accent-gold);
   margin-right: 8px;
+    padding-left: 0.5rem;
+
 }
 
 .dropdown-toggle::after {
@@ -319,3 +334,4 @@
     display: block;
   }
 }
+

@@ -253,6 +253,10 @@
     margin-bottom: 2rem;
   }
   
+  .footer-title {
+    text-align: center; /* Added text-center override for mobile */
+  }
+  
   .footer-title::after {
     left: 50%;
     transform: translateX(-50%);
@@ -306,4 +310,5 @@
   .footer-bottom-links a {
     font-size: 0.8rem;
   }
+  
 }

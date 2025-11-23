@@ -4,6 +4,7 @@
   height: 80vh;
   overflow: hidden;
   min-height: 500px;
+  direction :rtl;
 }
 
 .slide-container {
@@ -71,6 +72,9 @@
 
 .hero-actions {
   animation: fadeInUp 1s ease 0.9s both;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
 }
 
 .hero-actions .btn {
