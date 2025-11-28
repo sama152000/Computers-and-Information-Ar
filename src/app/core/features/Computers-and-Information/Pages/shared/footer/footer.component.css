@@ -60,7 +60,7 @@
   content: '';
   position: absolute;
   bottom: 0;
-  left: 0;
+  right: 0;
   width: 30px;
   height: 2px;
   background: var(--secondary-red);
